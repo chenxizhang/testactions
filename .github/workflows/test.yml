@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run tests
+        shell: pwsh
         run: |
-          pwsh
           $PSVersionTable
           Install-Module -Name code365scripts.openai
