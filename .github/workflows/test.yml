@@ -1,0 +1,16 @@
+name: test
+
+on: push
+
+jobs:
+  job1:
+    name: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: |
+          pwsh
+          $PSVersionTable
+          Install-Module -Name code365scripts.openai
