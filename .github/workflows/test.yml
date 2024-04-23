@@ -12,5 +12,5 @@ jobs:
       - name: Run tests
         shell: pwsh
         run: |
-          $PSVersionTable
+          Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
           Install-Module -Name code365scripts.openai
