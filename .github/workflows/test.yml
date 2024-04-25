@@ -17,6 +17,6 @@ jobs:
           Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
           Install-Module -Name code365scripts.openai
           Import-Module code365scripts.openai
-          chat -prompt "what's the capital of China?" -api_key ${{secrets.OPENAI_API_KEY}} | Out-File out.txt -Force
+          chat -prompt "what's the capital of China?" -api_key '${{secrets.OPENAI_API_KEY}}' -Verbose | Out-File out1.txt -Force
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
