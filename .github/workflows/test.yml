@@ -16,6 +16,6 @@ jobs:
         run: |
           Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
           Install-Module -Name code365scripts.openai
-          Get-Process | Out-File out.txt
+          chat -prompt "what's the capital of China?" | Out-File out.txt -Force
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
