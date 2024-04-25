@@ -11,12 +11,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Run tests
+      - name: changed-files
+        uses: knu/changed-files@v1.0.0
+        with:
+          paths: /docs/zh/*.md
+      - name: Translate to English
         shell: pwsh
         run: |
-          Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
-          Install-Module -Name code365scripts.openai
-          Import-Module code365scripts.openai
-          chat -prompt "what's the capital of China?" -api_key '${{secrets.OPENAI_API_KEY}}' -Verbose | Out-File out.txt -Force
+          $changedFiles = ${{steps.changed-files.outputs.files}}
+          $changedFiles | ForEach-Object {
+            $path = $_
+            $content = Get-Content $path
+            Write-Host "Translating $path"
+            Write-Host $content
+          }
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
