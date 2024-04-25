@@ -6,7 +6,7 @@ jobs:
   job1:
     name: job1
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       contents: write
     steps:
       - name: Checkout
@@ -16,6 +16,7 @@ jobs:
         run: |
           Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
           Install-Module -Name code365scripts.openai
-          chat -prompt "what's the capital of China?" | Out-File out.txt -Force
+          Import-Module code365scripts.openai
+          chat -prompt "what's the capital of China?" -api_key ${{secrets.OPENAI_API_KEY}} | Out-File out.txt -Force
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
