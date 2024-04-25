@@ -11,14 +11,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: changed-files
+      - id: changed-files
+        name: changed-files
         uses: knu/changed-files@v1.0.0
         with:
           paths: /docs/zh/*.md
       - name: Translate to English
         shell: pwsh
         run: |
-          $changedFiles = ${{steps.changed-files.outputs.files}}
+          $changedFiles = ${{ steps.changed-files.outputs.changed_files }}
           $changedFiles | ForEach-Object {
             $path = $_
             $content = Get-Content $path
