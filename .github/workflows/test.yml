@@ -6,6 +6,8 @@ jobs:
   job1:
     name: job1
     runs-on: ubuntu-latest
+    permissions: 
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -14,4 +16,6 @@ jobs:
         run: |
           Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
           Install-Module -Name code365scripts.openai
-          Get-Command -Module code365scripts.openai
+          Get-Process | Out-File out.txt
+      - name: commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
