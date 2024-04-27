@@ -1,3 +1,0 @@
-.github/workflows/test.yml
-docs/zh/readme.md
-

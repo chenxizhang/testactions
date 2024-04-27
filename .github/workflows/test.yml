@@ -17,19 +17,10 @@ jobs:
       - id: changed-files
         name: changed-files
         uses: knu/changed-files@v1.0.0
-      - name: Translate to English
-        shell: pwsh
-        env:
+      - name: translate
+        uses: chenxizhang/gpt-translator@v1
+        with:
+          openai_api_key: ${{secrets.OPENAI_API_KEY}}
           files: ${{steps.changed-files.outputs.changed_files_json}}
-          prompt: You have me to translate the content to English, in professional style.You mustn't change the content structure and anything else, you just translate the content based on your language skill.
-        run: |
-          Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
-          Install-Module -Name code365scripts.openai
-          Import-Module code365scripts.openai
-          $env:files | ConvertFrom-Json | ForEach-Object { 
-            $file = $_ -replace "zh", "en";
-            New-Item -Path $file -ItemType File -Force;
-            chat -system $env:prompt -prompt $_ -api_key ${{secrets.OPENAI_API_KEY}} | Out-File $file;
-          }
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
