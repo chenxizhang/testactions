@@ -26,7 +26,5 @@ jobs:
         with:
           openai_api_key: ${{secrets.OPENAI_API_KEY_AZURE}}
           files: ${{steps.changed-files.outputs.matched_files_json}}
-          useAzure: true
-          endpoint: https://domorewithless-eastus.openai.azure.com/
           modelOrdeployment: gpt-35-turbo
           to_language: en
