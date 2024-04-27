@@ -20,7 +20,7 @@ jobs:
         shell: pwsh
         env:
           files: ${{steps.changed-files.outputs.changed_files_json}}
-          prompt: "You have me to translate the content to English, in professional style.You mustn't change the content structure and anything else, you just translate the content based on your language skill."
+          prompt: You have me to translate the content to English, in professional style.You mustn't change the content structure and anything else, you just translate the content based on your language skill.
         run: |
           Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
           Install-Module -Name code365scripts.openai
