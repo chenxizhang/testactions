@@ -22,10 +22,10 @@ jobs:
           paths: |
             docs/zh/*.md
       - name: translate
-        uses: chenxizhang/gpt-translator@v2
+        uses: chenxizhang/gpt-translator@master
         with:
           openai_api_key: ${{secrets.OPENAI_API_KEY}}
           files: ${{steps.changed-files.outputs.matched_files_json}}
-          to_language: fr
+          to_language: fr,en,de
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
