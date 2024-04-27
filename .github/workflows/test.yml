@@ -1,6 +1,9 @@
 name: test
 
-on: push
+on:
+  push:
+    branches: master
+      docs/zh/*.md
 
 jobs:
   job1:
@@ -14,8 +17,6 @@ jobs:
       - id: changed-files
         name: changed-files
         uses: knu/changed-files@v1.0.0
-        with:
-          paths: docs/zh/*.md
       - name: Translate to English
         shell: pwsh
         env:
@@ -26,11 +27,9 @@ jobs:
           Install-Module -Name code365scripts.openai
           Import-Module code365scripts.openai
           $env:files | ConvertFrom-Json | ForEach-Object { 
-            if($_ -like "*.md"){
-              $file = $_ -replace "zh", "en";
-              New-Item -Path $file -ItemType File -Force;
-              chat -system $env:prompt -prompt $_ -api_key ${{secrets.OPENAI_API_KEY}} | Out-File $file;
-            }
+            $file = $_ -replace "zh", "en";
+            New-Item -Path $file -ItemType File -Force;
+            chat -system $env:prompt -prompt $_ -api_key ${{secrets.OPENAI_API_KEY}} | Out-File $file;
           }
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
