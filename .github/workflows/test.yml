@@ -18,8 +18,10 @@ jobs:
           paths: /docs/zh/*.md
       - name: Translate to English
         shell: pwsh
+        env:
+          files: ${{steps.changed-files.outputs.changed_files}}
         run: |
-          ${{ steps.changed-files.outputs.changed_files }} | ForEach-Object {
+          ${files}| ForEach-Object {
             $path = $_
             Write-Host $path
           }
