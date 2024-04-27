@@ -23,7 +23,8 @@ jobs:
         run: |
           ${files}| ForEach-Object {
             $path = $_
-            Write-Host $path
+            Write-Verbose $path
+            $path | Out-File out.txt -Append -Force
           }
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
