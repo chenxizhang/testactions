@@ -19,15 +19,8 @@ jobs:
       - name: Translate to English
         shell: pwsh
         env:
-          files: ${{steps.changed-files.outputs.changed_files}}
+          files: ${{steps.changed-files.outputs.changed_files_json}}
           prompt: "You have me to translate the content to English, in professional style.You mustn't change the content structure and anything else, you just translate the content based on your language skill."
-        run: |
-          $env:files -split "`r`n" | ForEach-Object {
-            $path = $_
-            $content = Get-Content -Path $path
-            $file = $path -replace 'zh', 'en'
-            New-Item -Path $file -ItemType File -Force
-            chat -system $env:prompt -prompt $content | Out-File -FilePath $file
-          }
+        run: $env:files | Out-File test.txt -Encoding utf8
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
