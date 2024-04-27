@@ -27,7 +27,6 @@ jobs:
           openai_api_key: ${{secrets.OPENAI_API_KEY_AZURE}}
           files: ${{steps.changed-files.outputs.matched_files_json}}
           useAzure: true
-          endpoint: ${{secrets.OPENAI_API_AZURE_ENDPOINT}}
+          endpoint: https://domorewithless-eastus.openai.azure.com/
+          modelOrdeployment: gpt-35-turbo
           to_language: en
-      - name: commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
