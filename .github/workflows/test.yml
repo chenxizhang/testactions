@@ -18,6 +18,8 @@ jobs:
       - id: changed-files
         name: changed-files
         uses: knu/changed-files@v1.0.0
+        with:
+          paths: docs/zh/*.md
       - name: translate
         uses: chenxizhang/gpt-translator@v1
         with:
