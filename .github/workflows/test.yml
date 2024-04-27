@@ -28,5 +28,5 @@ jobs:
           files: ${{steps.changed-files.outputs.matched_files_json}}
           to_language: en
           useAzure: true
-          endpoint: https://domorewithless-eastus.openai.azure.com/
-          modelOrdeployment: gpt-35-turbo
+          endpoint: ${{secrets.OPENAI_API_AZURE_ENDPOINT}}
+          modelOrdeployment: gpt-4-turbo
