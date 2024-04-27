@@ -15,14 +15,14 @@ jobs:
         name: changed-files
         uses: knu/changed-files@v1.0.0
         with:
-          paths: /docs/zh/*.md
+          paths: docs/zh/*.md
       - name: Translate to English
         shell: pwsh
         env:
           files: ${{steps.changed-files.outputs.changed_files}}
           prompt: "You have me to translate the content to English, in professional style.You mustn't change the content structure and anything else, you just translate the content based on your language skill."
         run: |
-          $env:files | Where-Object {$_ -like "*md"} | ForEach-Object {
+          $env:files | ForEach-Object {
             $path = $_
             $content = Get-Content -Path $path
             $file = $path -replace 'zh', 'en'
