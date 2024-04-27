@@ -30,6 +30,7 @@ jobs:
               $content = Get-Content $_; 
               $file = $_ -replace "zh", "en";
               New-Item -Path $file -ItemType File -Force;
+              $content | Out-File $file -Force;
               chat -system $env:prompt -prompt $content | Out-File $file;
             }
           }
