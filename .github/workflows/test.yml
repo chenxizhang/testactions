@@ -24,7 +24,7 @@ jobs:
       - name: translate
         uses: chenxizhang/gpt-translator@master
         with:
-          openai_api_key: ${{secrets.OPENAI_API_KEY_AZURE}}
+          openai_api_key: ${{secrets.OPENAI_API_KEY}}
           files: ${{steps.changed-files.outputs.matched_files_json}}
           modelOrdeployment: gpt-35-turbo
           to_language: en
