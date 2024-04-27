@@ -19,8 +19,7 @@ jobs:
       - name: Translate to English
         shell: pwsh
         run: |
-          $changedFiles = ${{ steps.changed-files.outputs.changed_files }}
-          $changedFiles | ForEach-Object {
+          ${{ steps.changed-files.outputs.changed_files }} | ForEach-Object {
             $path = $_
             $content = Get-Content $path
             Write-Host "Translating $path"
