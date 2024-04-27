@@ -20,11 +20,14 @@ jobs:
         shell: pwsh
         env:
           files: ${{steps.changed-files.outputs.changed_files}}
+          prompt: "You have me to translate the content to English, in professional style.You mustn't change the content structure and anything else, you just translate the content based on your language skill."
         run: |
-          $env:files | ForEach-Object {
+          $env:files | Where-Object {$_ -like "*md"} | ForEach-Object {
             $path = $_
-            Write-Verbose $path
-            $path | Out-File out.txt -Append -Force
+            $content = Get-Content -Path $path
+            $file = $path -replace 'zh', 'en'
+            New-Item -Path $file -ItemType File -Force
+            chat -system $env:prompt -prompt $content | Out-File -FilePath $file
           }
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
