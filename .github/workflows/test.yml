@@ -27,11 +27,9 @@ jobs:
           Import-Module code365scripts.openai
           $env:files | ConvertFrom-Json | ForEach-Object { 
             if($_ -like "*.md"){
-              $content = Get-Content $_; 
               $file = $_ -replace "zh", "en";
               New-Item -Path $file -ItemType File -Force;
-              $content | Out-File $file -Force;
-              # chat -system $env:prompt -prompt $content | Out-File $file;
+              chat -system $env:prompt -prompt $_ | Out-File $file;
             }
           }
       - name: commit changes
