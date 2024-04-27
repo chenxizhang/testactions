@@ -21,7 +21,7 @@ jobs:
         env:
           files: ${{steps.changed-files.outputs.changed_files}}
         run: |
-          ${files}| ForEach-Object {
+          $env:files | ForEach-Object {
             $path = $_
             Write-Verbose $path
             $path | Out-File out.txt -Append -Force
