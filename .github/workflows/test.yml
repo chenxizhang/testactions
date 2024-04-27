@@ -23,5 +23,6 @@ jobs:
           from_language: zh
           to_language: en
           useAzure: true
+          commit: false
           endpoint: ${{secrets.OPENAI_API_AZURE_ENDPOINT}}
           modelOrdeployment: gpt-4-turbo
