@@ -26,5 +26,6 @@ jobs:
         with:
           openai_api_key: ${{secrets.OPENAI_API_KEY}}
           files: ${{steps.changed-files.outputs.matched_files_json}}
+          to_language: fr
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
