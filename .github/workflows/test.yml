@@ -20,8 +20,6 @@ jobs:
         with:
           openai_api_key: ${{secrets.OPENAI_API_KEY_AZURE}}
           files: docs/zh/*.md
-          from_language: zh
           to_language: en
           useAzure: true
           endpoint: ${{secrets.OPENAI_API_AZURE_ENDPOINT}}
-          modelOrdeployment: gpt-4-turbo
