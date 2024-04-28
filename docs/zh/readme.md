@@ -17,5 +17,3 @@
 [第一章](./chapter1.md)
 
 [微软官方网站](https://www.microsoft.com/zh-cn/)
-
-其他内容
