@@ -21,3 +21,4 @@ jobs:
           openai_api_key: ${{secrets.OPENAI_API_KEY}}
           files: docs/zh/*.md
           to_language: en
+          systemPrompt: "Translate the Chinese document to English"
