@@ -17,3 +17,5 @@
 [第一章](./chapter1.md)
 
 [微软官方网站](https://www.microsoft.com/zh-cn/)
+
+我们开始吧！让我们一起探索量子力学的奇妙世界！
