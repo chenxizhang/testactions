@@ -18,6 +18,8 @@ jobs:
       - name: translate
         uses: chenxizhang/gpt-translator@master
         with:
-          openai_api_key: ${{secrets.OPENAI_API_KEY}}
+          openai_api_key: ${{secrets.OPENAI_API_KEY_AZURE}}
           files: docs/zh/*.md
           to_language: en
+          useAzure: true
+          endpoint: ${{secrets.OPENAI_API_AZURE_ENDPOINT}}
