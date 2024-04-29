@@ -20,7 +20,7 @@ jobs:
         with:
           openai_api_key: ${{secrets.OPENAI_API_KEY_AZURE}}
           files: docs/zh/*.md
-          to_language: en
+          to_language: en,fr
           useAzure: true
           systemPrompt: lib:gpt-translator-md
           endpoint: ${{secrets.OPENAI_API_AZURE_ENDPOINT}}
