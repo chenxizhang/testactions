@@ -20,7 +20,9 @@ jobs:
         with:
           openai_api_key: ${{secrets.OPENAI_API_KEY_AZURE}}
           files: docs/zh/*.md
-          to_language: en,fr
+          to_language: en
           useAzure: true
           systemPrompt: lib:gpt-translator-md
+          rules: |
+            - put a link to the original article at the end of the translated article, and add a sentence to indicate that it is a translation (in the target language)
           endpoint: ${{secrets.OPENAI_API_AZURE_ENDPOINT}}
