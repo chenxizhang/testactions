@@ -22,4 +22,5 @@ jobs:
           files: docs/zh/*.md
           to_language: en
           useAzure: true
+          systemPrompt: lib:gpt-translator-md
           endpoint: ${{secrets.OPENAI_API_AZURE_ENDPOINT}}
